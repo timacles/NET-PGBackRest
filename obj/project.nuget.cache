@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "zh7DqpVeOUw4yGCKhK6KxjYCeqtrtfckLbxO5CKWdwapTufK+ML8lRBc16KFMgg876ZZyc9pPKlim+Y/8P0PYg==",
+  "success": true,
+  "projectFilePath": "/home/timur.alekper@therapynotes.com.onmicrosoft.com/git/NETBackRest/NETBackRest.csproj",
+  "expectedPackageFiles": [
+    "/home/timur.alekper@therapynotes.com.onmicrosoft.com/.nuget/packages/microsoft.extensions.logging.abstractions/6.0.0/microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "/home/timur.alekper@therapynotes.com.onmicrosoft.com/.nuget/packages/npgsql/7.0.6/npgsql.7.0.6.nupkg.sha512"
+  ],
+  "logs": []
+}
