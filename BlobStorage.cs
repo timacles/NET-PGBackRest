@@ -40,19 +40,20 @@ public class BlobStorageUploader
         containerClient = blobServiceClient.GetBlobContainerClient(account.Container);
     }
 
-    public async Task UploadBlob(string connectionString, string containerName, string blobName, string localFilePath)
+    public async Task UploadBlob(MyFile file)
     {
-        blobClient = containerClient.GetBlobClient(blobName);
+        blobClient = containerClient.GetBlobClient(file.Name);
         try
         {
-            using (FileStream fs = File.OpenRead(localFilePath))
+            using (FileStream fs = File.OpenRead(file.FullPath))
             {
                 await blobClient.UploadAsync(fs, true);
             }
+            Log.Info($"Uploaded {file.FullPath} => {file.Name}");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error uploading blob: {ex.Message}");
+            Log.Error($"Error uploading blob: {ex.Message}");
             // Handle the exception as needed
         }
     }
