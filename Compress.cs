@@ -1,17 +1,37 @@
-
-using Azure.Storage.Blobs;
-using Azure.Storage.Blobs.Specialized;
-
-using System;
-using System.Collections.Generic;
-using System.IO;
 using System.IO.Compression;
-using System.Linq;
-using System.Threading.Tasks;
+
+class CompressingReader : IFileReader, IDisposable
+{
+    private Stream fileStream;
+    private MemoryStream compressedStream;
+    private GZipStream gzipStream;
+
+    public async Task<MemoryStream> ReadAsync(string filePath)
+    {
+        fileStream = File.OpenRead(filePath);
+        compressedStream = new MemoryStream();
+        gzipStream = new GZipStream(compressedStream, CompressionLevel.Optimal);
+
+        await fileStream.CopyToAsync(gzipStream);
+        await gzipStream.FlushAsync();
+        compressedStream.Position = 0;
+        return compressedStream;
+    }
+
+    public void Dispose()
+    {
+        fileStream.Dispose();
+        gzipStream.Dispose();
+        compressedStream.Dispose();
+    }
+}
 
 
+/*
 class CompressAndUpload
 {
+    public BlobStorageUploader uploader;
+
     public async Task ProcessCompressAndUploadFilesAsync(string blobContainerName, List<string> filePaths)
     {
         int maxDegreeOfParallelism = 8; // Maximum number of concurrent uploads
@@ -32,7 +52,7 @@ class CompressAndUpload
                         await fileStream.CopyToAsync(gzipStream);
                         await gzipStream.FlushAsync();
                         compressedStream.Position = 0;
-                        await blobClient.UploadAsync(compressedStream);
+                        await uploader.UploadAsync(compressedStream);
                         Console.WriteLine($"Uploaded {compressedFileName}");
                     }
                 }
@@ -50,3 +70,4 @@ class CompressAndUpload
         }
     }
 }
+*/

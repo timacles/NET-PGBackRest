@@ -7,25 +7,15 @@ public class MyFile
 {
     public FileInfo FileInfo { get; } 
     public string FullPath { get; }
+    public string Name => FileInfo.Name;
+    public long Length => FileInfo.Length;
+
+    public Stream stream { get; set; }  
 
     public MyFile(string filePath)
     {
         FullPath = filePath;
         FileInfo = new FileInfo(filePath);
-    }
-
-    public string Name => FileInfo.Name;
-    public long Length => FileInfo.Length;
-}
-
-
-class FileCollection 
-{
-    public List<FileInfo> Collection { get; set; }
-
-    public void Add(FileInfo fi)
-    {
-        Collection.Add(fi);
     }
 }
 

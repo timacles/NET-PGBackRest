@@ -24,12 +24,14 @@ public class AccountInfo
 }
 
 
-public class BlobStorageUploader
+public class BlobStorageUploader : IFileUploader
 {
     public AccountInfo account;
     public BlobServiceClient blobServiceClient;
     public BlobContainerClient containerClient;
     public BlobClient blobClient;
+
+    public string AccountName => containerClient.AccountName;
 
     public BlobStorageUploader(AccountInfo inAccount)
     {
@@ -38,6 +40,20 @@ public class BlobStorageUploader
                 new Uri(account.ConnString),
                 new DefaultAzureCredential());
         containerClient = blobServiceClient.GetBlobContainerClient(account.Container);
+    }
+
+    public async Task UploadAsync(Stream fileStream, string destPath, bool overwrite = true)
+    {
+        blobClient = containerClient.GetBlobClient(destPath);
+        try
+        {
+            await blobClient.UploadAsync(fileStream, overwrite);
+        }
+        catch (Exception ex)
+        {
+            Log.Error($"Error uploading blob: {ex.Message}");
+            throw ex;
+        }
     }
 
     public async Task UploadBlob(MyFile file)

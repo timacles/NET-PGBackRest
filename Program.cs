@@ -5,6 +5,7 @@
  * - Config File 
  */
 
+using System.Diagnostics;
 
 class Program
 {
@@ -18,16 +19,19 @@ class Program
 
         // Connect to account
         BlobStorageUploader uploader = new BlobStorageUploader(account);   
-        var aname = uploader.containerClient.AccountName;
-        Console.WriteLine($"Connected to {aname}");
+        Console.WriteLine($"Connected to {uploader.AccountName}");
 
-        // Scan Dir
+        FileManager manager = new FileManager(uploader);
         FileScanner scanner = new FileScanner();
-        scanner.ScanDirectory(rootDirectory); 
 
-        foreach (MyFile file in scanner.Files)
-        {
-            await uploader.UploadBlob(file);
-        }
+        Stopwatch stopwatch = new Stopwatch();
+        stopwatch.Start();
+
+        scanner.ScanDirectory(rootDirectory); 
+        
+        await manager.ParallelUpload(scanner.Files);
+
+        stopwatch.Stop();
+        Log.Info($"ALL UPLOADS FINISHED. Timing: {stopwatch.Elapsed}");
     }
 }
