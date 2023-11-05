@@ -14,6 +14,7 @@ class CompressingReader : IFileReader, IDisposable
 
         await fileStream.CopyToAsync(gzipStream);
         await gzipStream.FlushAsync();
+        
         compressedStream.Position = 0;
         return compressedStream;
     }

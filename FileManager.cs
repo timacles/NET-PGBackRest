@@ -15,6 +15,8 @@ public interface IFileUploader
 class FileManager {
     public IFileUploader uploader; 
 
+    public int maxDegreeOfParallelism = 8;
+
     public FileManager(IFileUploader uploader)
     {
         this.uploader = uploader;
@@ -33,13 +35,12 @@ class FileManager {
         }
 
         stopwatch.Stop();
-        Log.Info($" DONE Upload: {myFile.Name}, timing: {stopwatch.Elapsed}");
+        Log.Info($"   Upload Done: {myFile.Name}, timing: {stopwatch.Elapsed}");
     }
 
 
-    public async Task ParallelUpload(List<MyFile> Files)
+    public async Task ParallelCompressedUpload(List<MyFile> Files)
     {
-        int maxDegreeOfParallelism = 8; // Maximum number of concurrent uploads
 
         using (var semaphoreSlim = new SemaphoreSlim(maxDegreeOfParallelism))
         {
@@ -59,7 +60,6 @@ class FileManager {
                     semaphoreSlim.Release();
                 }
             });
-
             await Task.WhenAll(tasks);
         }
     }

@@ -1,8 +1,3 @@
-using System;
-using System.ComponentModel;
-using System.IO;
-
-
 public class MyFile 
 {
     public FileInfo FileInfo { get; } 
@@ -32,10 +27,6 @@ class FileScanner
             foreach (string filePath in Directory.GetFiles(directory))
             {
                 MyFile fileInfo = new MyFile(filePath);
-                Console.WriteLine("Full Path: " + fileInfo.FullPath);
-                Console.WriteLine("File Name: " + fileInfo.Name);
-                Console.WriteLine("File Size: " + fileInfo.Length + " bytes");
-                Console.WriteLine(); // Add a separator
                 Files.Add(fileInfo);
             }
 

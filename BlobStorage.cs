@@ -1,9 +1,5 @@
-using System;
-using System.IO;
 using Azure.Storage.Blobs;
-using Azure.Storage.Blobs.Specialized;
 using Azure.Identity;
-using System.Threading.Tasks;
 
 public class AccountInfo
 {
@@ -51,7 +47,7 @@ public class BlobStorageUploader : IFileUploader
         }
         catch (Exception ex)
         {
-            Log.Error($"Error uploading blob: {ex.Message}");
+            Log.Error($"Error uploading blob: {destPath}");
             throw ex;
         }
     }
@@ -70,7 +66,6 @@ public class BlobStorageUploader : IFileUploader
         catch (Exception ex)
         {
             Log.Error($"Error uploading blob: {ex.Message}");
-            // Handle the exception as needed
         }
     }
 }
