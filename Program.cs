@@ -13,6 +13,13 @@ class Program
 {
     static async Task Main(string[] args)
     {
+        
+        // Catch a SIGINT
+        Console.CancelKeyPress += delegate {
+            Log.Info("Program Interrupted. CTRL + C");     
+        };
+
+        // Timer 
         Stopwatch stopwatch = new Stopwatch();
         stopwatch.Start();
 
@@ -22,6 +29,9 @@ class Program
         WalStreamer walStreamer = new WalStreamer();
         await walStreamer.Stream();
 
+        /////////
+        // END //
+        /////////
         stopwatch.Stop();
         Log.Info($"Elapsed Time: {stopwatch.Elapsed}");
     }
