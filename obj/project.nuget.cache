@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ZW9YtzZcxPLzakX8th1yIE10gCk3AaQmRuWi15CCbRAPJ2/T+oI2si4UJTBziqSkp2p+Zqf77bSXMyshEqqyzQ==",
+  "dgSpecHash": "bIF0wxrd4jJ0+rmx0NXyGp1+nhjNN33SEKTeWvu4NyhX6Q+yQFQgFRgwtK+2fb1HrfA7drgvOE33Orgm94BHzA==",
   "success": true,
   "projectFilePath": "/home/timur.alekper@therapynotes.com.onmicrosoft.com/git/NETBackRest/NETBackRest.csproj",
   "expectedPackageFiles": [
@@ -28,7 +28,7 @@
     "/home/timur.alekper@therapynotes.com.onmicrosoft.com/.nuget/packages/system.text.encodings.web/4.7.2/system.text.encodings.web.4.7.2.nupkg.sha512",
     "/home/timur.alekper@therapynotes.com.onmicrosoft.com/.nuget/packages/system.text.json/4.7.2/system.text.json.4.7.2.nupkg.sha512",
     "/home/timur.alekper@therapynotes.com.onmicrosoft.com/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512",
-    "/home/timur.alekper@therapynotes.com.onmicrosoft.com/.nuget/packages/microsoft.netcore.app.host.linux-x64/7.0.14/microsoft.netcore.app.host.linux-x64.7.0.14.nupkg.sha512"
+    "/home/timur.alekper@therapynotes.com.onmicrosoft.com/.nuget/packages/microsoft.netcore.app.host.linux-x64/7.0.16/microsoft.netcore.app.host.linux-x64.7.0.16.nupkg.sha512"
   ],
   "logs": []
 }

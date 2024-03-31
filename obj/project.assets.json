@@ -1168,7 +1168,7 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.NETCore.App.Host.linux-x64",
-            "version": "[7.0.14, 7.0.14]"
+            "version": "[7.0.16, 7.0.16]"
           }
         ],
         "frameworkReferences": {
@@ -1176,7 +1176,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.100/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.102/RuntimeIdentifierGraph.json"
       }
     }
   }

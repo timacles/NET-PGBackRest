@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NETBackRest")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2c990068245955cad6f4b4ed17cded8a632f2a4c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+664cbca556b1c924a51fec30addf5ac050315eba")]
 [assembly: System.Reflection.AssemblyProductAttribute("NETBackRest")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NETBackRest")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -11,31 +11,29 @@ class WalStreamer
         await conn.Open();
         Log.Info($"Connected to: {connectionString}");
 
+        // Prepare to stream
         var cancellationTokenSource = new CancellationTokenSource();
         var cToken = cancellationTokenSource.Token;
         var sysId = await conn.IdentifySystem(cToken);
-        Log.Info($"Sys ident: {sysId.XLogPos}");
 
-        // replication slot 
         // TODO: Does this create replication slot??? 
         var slot = new PhysicalReplicationSlot(replicationSlotName);
         
         // Create the handler for the streamed data
-        var streamHandler = new StreamHandler();
+        var streamHandler = new StreamHandler(sysId);
+        Log.Info($"Starting Stream => Timeline: {streamHandler.Timeline} LSN: {streamHandler.StartLSN}");
 
         // start recieving replication messages
         await foreach (var message in conn.StartReplication(sysId.XLogPos, cToken, sysId.Timeline))
         {
             await streamHandler.Process(message);
-
-            //Console.WriteLine($"LSN: {message.WalStart} Message: {message.Data}");
-            //Console.WriteLine($"LSN: {message.WalStart} Message: {message.Data.Length}");
+            /* TODO: Write Files to disk */
 
             // Always call SetReplicationStatus() or assign LastAppliedLsn and LastFlushedLsn individually
             // so that Npgsql can inform the server which WAL files can be removed/recycled.
             conn.SetReplicationStatus(message.WalStart);
             
-            // This forces a status updated, I think this is only needed in specific situations 
+            // This forces a status update, I think this is only needed in specific situations 
             //await conn.SendStatusUpdate(cToken);  
         }
     }
